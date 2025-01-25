@@ -36,18 +36,23 @@ void ADefaultPlayerController::SetupInputComponent()
 		
 		EnhancedInputComponent->BindAction(SetAttackClickAction, ETriggerEvent::Started, this, &ADefaultPlayerController::OnAttackInputStarted);
 		EnhancedInputComponent->BindAction(SetAttackClickAction, ETriggerEvent::Completed, this, &ADefaultPlayerController::OnAttackInputReleased);
+
+		
 	}
 }
 
 void ADefaultPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	Cls_playerCharacter = Cast<APlayerCharacter>(GetPawn());
 }
 
 void ADefaultPlayerController::OnAimingInputStarted()
 {
 	//클릭 시작
+	if (Cls_playerCharacter == nullptr)
+	{
+		Cls_playerCharacter = Cast<APlayerCharacter>(GetPawn());
+	}
 	Cls_playerCharacter->LookStart();
 }
 
@@ -63,12 +68,9 @@ void ADefaultPlayerController::OnSetAimingTriggered()
 	{
 		CachedDestination = Hit.Location;
 	}
-
-	if (Cls_playerCharacter != nullptr)
-	{
-		FVector WorldDirection = (CachedDestination - Cls_playerCharacter->GetActorLocation()).GetSafeNormal();
-		Cls_playerCharacter->Look(WorldDirection);
-	}
+	UE_LOG(LogTemp, Display, TEXT("aaaaaaa"));
+	FVector WorldDirection = (CachedDestination - Cls_playerCharacter->GetActorLocation()).GetSafeNormal();
+	Cls_playerCharacter->Look(WorldDirection);
 }
 
 void ADefaultPlayerController::OnSetAimingReleased()
@@ -79,6 +81,7 @@ void ADefaultPlayerController::OnSetAimingReleased()
 
 void ADefaultPlayerController::OnAttackInputStarted()
 {
+	Cls_playerCharacter->Attack();
 }
 
 void ADefaultPlayerController::OnAttackInputReleased()

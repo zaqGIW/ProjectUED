@@ -40,6 +40,8 @@ APlayerCharacter::APlayerCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 640.f, 0.f);
 	GetCharacterMovement()->bConstrainToPlane = true;
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
+
+	GetCharacterMovement()->MaxWalkSpeed = moveRunSpeed;
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -99,10 +101,20 @@ void APlayerCharacter::Look(FVector Value)
 void APlayerCharacter::LookStart()
 {
 	GetCharacterMovement()->bOrientRotationToMovement = false;
+	GetCharacterMovement()->MaxWalkSpeed = moveWalkSpeed;
 }
 
 void APlayerCharacter::LookEnd()
 {
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->MaxWalkSpeed = moveRunSpeed;
 }
+
+
+void APlayerCharacter::Attack_Implementation()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Attack function is called."));
+}
+
+
 
