@@ -81,7 +81,7 @@ void ADefaultPlayerController::OnSetAimingReleased()
 
 void ADefaultPlayerController::OnAttackInputStarted()
 {
-	Cls_playerCharacter->Attack();
+	//Cls_playerCharacter->Attack();
 }
 
 void ADefaultPlayerController::OnAttackInputReleased()
