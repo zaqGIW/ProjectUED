@@ -44,6 +44,10 @@ void ADefaultPlayerController::SetupInputComponent()
 void ADefaultPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	if (Cls_playerCharacter == nullptr)
+	{
+		Cls_playerCharacter = Cast<APlayerCharacter>(GetPawn());
+	}
 }
 
 void ADefaultPlayerController::OnAimingInputStarted()
@@ -67,8 +71,7 @@ void ADefaultPlayerController::OnSetAimingTriggered()
 	if (bHitSuccessful)
 	{
 		CachedDestination = Hit.Location;
-	}
-	UE_LOG(LogTemp, Display, TEXT("aaaaaaa"));
+	}	
 	FVector WorldDirection = (CachedDestination - Cls_playerCharacter->GetActorLocation()).GetSafeNormal();
 	Cls_playerCharacter->Look(WorldDirection);
 }
@@ -81,7 +84,12 @@ void ADefaultPlayerController::OnSetAimingReleased()
 
 void ADefaultPlayerController::OnAttackInputStarted()
 {
-	//Cls_playerCharacter->Attack();
+	if (Cls_playerCharacter == nullptr)
+	{
+		Cls_playerCharacter = Cast<APlayerCharacter>(GetPawn());
+	}
+	Cls_playerCharacter->Attack();
+
 }
 
 void ADefaultPlayerController::OnAttackInputReleased()

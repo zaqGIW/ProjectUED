@@ -50,9 +50,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Attack();
-
-	// C++ 기본 구현을 제공하는 Attack_Implementation 함수 선언
-	void Attack_Implementation();
+	virtual void Attack_Implementation();
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Camera")

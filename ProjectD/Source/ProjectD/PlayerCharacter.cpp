@@ -111,6 +111,7 @@ void APlayerCharacter::LookEnd()
 }
 
 
+
 void APlayerCharacter::Attack_Implementation()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Attack function is called."));
