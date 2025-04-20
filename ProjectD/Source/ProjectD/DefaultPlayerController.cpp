@@ -33,9 +33,12 @@ void ADefaultPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SetAimingClickAction, ETriggerEvent::Triggered, this, &ADefaultPlayerController::OnSetAimingTriggered);
 		EnhancedInputComponent->BindAction(SetAimingClickAction, ETriggerEvent::Completed, this, &ADefaultPlayerController::OnSetAimingReleased);
 		EnhancedInputComponent->BindAction(SetAimingClickAction, ETriggerEvent::Canceled, this, &ADefaultPlayerController::OnSetAimingReleased);
-		
+
+
+
 		EnhancedInputComponent->BindAction(SetAttackClickAction, ETriggerEvent::Started, this, &ADefaultPlayerController::OnAttackInputStarted);
 		EnhancedInputComponent->BindAction(SetAttackClickAction, ETriggerEvent::Completed, this, &ADefaultPlayerController::OnAttackInputReleased);
+		EnhancedInputComponent->BindAction(TetsInputAction, ETriggerEvent::Started, this, &ADefaultPlayerController::OnTestAction);
 
 		
 	}
@@ -94,4 +97,9 @@ void ADefaultPlayerController::OnAttackInputStarted()
 
 void ADefaultPlayerController::OnAttackInputReleased()
 {
+}
+
+void ADefaultPlayerController::OnTestAction()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Mok Tal"));
 }

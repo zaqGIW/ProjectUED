@@ -27,6 +27,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* SetAttackClickAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* TetsInputAction;
+
 
 protected:
 	class APlayerCharacter* Cls_playerCharacter;
@@ -43,7 +46,8 @@ protected:
 
 	void OnAttackInputStarted();
 	void OnAttackInputReleased();
-
+	
+	void OnTestAction();
 private:
 	FVector CachedDestination;
 
